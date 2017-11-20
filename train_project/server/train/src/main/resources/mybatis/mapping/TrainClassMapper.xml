@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.train.dao.TrainClassMapper">
+  <resultMap id="BaseResultMap" type="com.train.dao.entity.TrainClass">
+    <id column="classno" jdbcType="INTEGER" property="classno" />
+    <result column="classna" jdbcType="VARCHAR" property="classna" />
+    <result column="creatti" jdbcType="TIMESTAMP" property="creatti" />
+    <result column="level" jdbcType="CHAR" property="level" />
+    <result column="schlid" jdbcType="INTEGER" property="schlid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    classno, classna, creatti, level, schlid, userid, tag, detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_class_info
+    where classno = #{classno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_class_info
+    where classno = #{classno,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.train.dao.entity.TrainClass">
+    insert into t_class_info (classno, classna, creatti, 
+      level, schlid, userid, 
+      tag, detail)
+    values (#{classno,jdbcType=INTEGER}, #{classna,jdbcType=VARCHAR}, #{creatti,jdbcType=TIMESTAMP}, 
+      #{level,jdbcType=CHAR}, #{schlid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{tag,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.train.dao.entity.TrainClass">
+    insert into t_class_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classno != null">
+        classno,
+      </if>
+      <if test="classna != null">
+        classna,
+      </if>
+      <if test="creatti != null">
+        creatti,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="schlid != null">
+        schlid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classno != null">
+        #{classno,jdbcType=INTEGER},
+      </if>
+      <if test="classna != null">
+        #{classna,jdbcType=VARCHAR},
+      </if>
+      <if test="creatti != null">
+        #{creatti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=CHAR},
+      </if>
+      <if test="schlid != null">
+        #{schlid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.train.dao.entity.TrainClass">
+    update t_class_info
+    <set>
+      <if test="classna != null">
+        classna = #{classna,jdbcType=VARCHAR},
+      </if>
+      <if test="creatti != null">
+        creatti = #{creatti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=CHAR},
+      </if>
+      <if test="schlid != null">
+        schlid = #{schlid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where classno = #{classno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.train.dao.entity.TrainClass">
+    update t_class_info
+    set classna = #{classna,jdbcType=VARCHAR},
+      creatti = #{creatti,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=CHAR},
+      schlid = #{schlid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      tag = #{tag,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR}
+    where classno = #{classno,jdbcType=INTEGER}
+  </update>
+</mapper>

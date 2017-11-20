@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.train.dao.FamilyMapper">
+  <resultMap id="BaseResultMap" type="com.train.dao.entity.Family">
+    <id column="famyid" jdbcType="INTEGER" property="famyid" />
+    <result column="famyna" jdbcType="VARCHAR" property="famyna" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="creati" jdbcType="TIMESTAMP" property="creati" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    famyid, famyna, detail, creati
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_family_info
+    where famyid = #{famyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_family_info
+    where famyid = #{famyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.train.dao.entity.Family">
+    insert into t_family_info (famyid, famyna, detail, 
+      creati)
+    values (#{famyid,jdbcType=INTEGER}, #{famyna,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{creati,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.train.dao.entity.Family">
+    insert into t_family_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="famyid != null">
+        famyid,
+      </if>
+      <if test="famyna != null">
+        famyna,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="creati != null">
+        creati,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="famyid != null">
+        #{famyid,jdbcType=INTEGER},
+      </if>
+      <if test="famyna != null">
+        #{famyna,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="creati != null">
+        #{creati,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.train.dao.entity.Family">
+    update t_family_info
+    <set>
+      <if test="famyna != null">
+        famyna = #{famyna,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="creati != null">
+        creati = #{creati,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where famyid = #{famyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.train.dao.entity.Family">
+    update t_family_info
+    set famyna = #{famyna,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      creati = #{creati,jdbcType=TIMESTAMP}
+    where famyid = #{famyid,jdbcType=INTEGER}
+  </update>
+</mapper>

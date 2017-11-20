@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.train.dao.ScheduleMapper">
+  <resultMap id="BaseResultMap" type="com.train.dao.entity.Schedule">
+    <id column="schdid" jdbcType="INTEGER" property="schdid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="schdti" jdbcType="TIMESTAMP" property="schdti" />
+    <result column="schdtp" jdbcType="VARCHAR" property="schdtp" />
+    <result column="alerttp" jdbcType="VARCHAR" property="alerttp" />
+    <result column="alerti" jdbcType="TIMESTAMP" property="alerti" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="creati" jdbcType="DATE" property="creati" />
+    <result column="linkid" jdbcType="INTEGER" property="linkid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    schdid, userid, title, content, schdti, schdtp, alerttp, alerti, status, creati, 
+    linkid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_schedule_info
+    where schdid = #{schdid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_schedule_info
+    where schdid = #{schdid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.train.dao.entity.Schedule">
+    insert into t_schedule_info (schdid, userid, title, 
+      content, schdti, schdtp, 
+      alerttp, alerti, status, 
+      creati, linkid)
+    values (#{schdid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{schdti,jdbcType=TIMESTAMP}, #{schdtp,jdbcType=VARCHAR}, 
+      #{alerttp,jdbcType=VARCHAR}, #{alerti,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, 
+      #{creati,jdbcType=DATE}, #{linkid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.train.dao.entity.Schedule">
+    insert into t_schedule_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="schdid != null">
+        schdid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="schdti != null">
+        schdti,
+      </if>
+      <if test="schdtp != null">
+        schdtp,
+      </if>
+      <if test="alerttp != null">
+        alerttp,
+      </if>
+      <if test="alerti != null">
+        alerti,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="creati != null">
+        creati,
+      </if>
+      <if test="linkid != null">
+        linkid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="schdid != null">
+        #{schdid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="schdti != null">
+        #{schdti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="schdtp != null">
+        #{schdtp,jdbcType=VARCHAR},
+      </if>
+      <if test="alerttp != null">
+        #{alerttp,jdbcType=VARCHAR},
+      </if>
+      <if test="alerti != null">
+        #{alerti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="creati != null">
+        #{creati,jdbcType=DATE},
+      </if>
+      <if test="linkid != null">
+        #{linkid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.train.dao.entity.Schedule">
+    update t_schedule_info
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="schdti != null">
+        schdti = #{schdti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="schdtp != null">
+        schdtp = #{schdtp,jdbcType=VARCHAR},
+      </if>
+      <if test="alerttp != null">
+        alerttp = #{alerttp,jdbcType=VARCHAR},
+      </if>
+      <if test="alerti != null">
+        alerti = #{alerti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="creati != null">
+        creati = #{creati,jdbcType=DATE},
+      </if>
+      <if test="linkid != null">
+        linkid = #{linkid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where schdid = #{schdid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.train.dao.entity.Schedule">
+    update t_schedule_info
+    set userid = #{userid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      schdti = #{schdti,jdbcType=TIMESTAMP},
+      schdtp = #{schdtp,jdbcType=VARCHAR},
+      alerttp = #{alerttp,jdbcType=VARCHAR},
+      alerti = #{alerti,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      creati = #{creati,jdbcType=DATE},
+      linkid = #{linkid,jdbcType=INTEGER}
+    where schdid = #{schdid,jdbcType=INTEGER}
+  </update>
+</mapper>

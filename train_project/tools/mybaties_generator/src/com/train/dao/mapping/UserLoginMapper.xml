@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.train.dao.UserLoginMapper">
+  <resultMap id="BaseResultMap" type="com.train.dao.entity.UserLogin">
+    <id column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="sessid" jdbcType="VARCHAR" property="sessid" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="devitp" jdbcType="VARCHAR" property="devitp" />
+    <result column="longti" jdbcType="TIMESTAMP" property="longti" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, passwd, sessid, token, devitp, longti
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_login
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user_login
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.train.dao.entity.UserLogin">
+    insert into t_user_login (userid, passwd, sessid, 
+      token, devitp, longti
+      )
+    values (#{userid,jdbcType=INTEGER}, #{passwd,jdbcType=VARCHAR}, #{sessid,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{devitp,jdbcType=VARCHAR}, #{longti,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.train.dao.entity.UserLogin">
+    insert into t_user_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="sessid != null">
+        sessid,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="devitp != null">
+        devitp,
+      </if>
+      <if test="longti != null">
+        longti,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sessid != null">
+        #{sessid,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="devitp != null">
+        #{devitp,jdbcType=VARCHAR},
+      </if>
+      <if test="longti != null">
+        #{longti,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.train.dao.entity.UserLogin">
+    update t_user_login
+    <set>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sessid != null">
+        sessid = #{sessid,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="devitp != null">
+        devitp = #{devitp,jdbcType=VARCHAR},
+      </if>
+      <if test="longti != null">
+        longti = #{longti,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.train.dao.entity.UserLogin">
+    update t_user_login
+    set passwd = #{passwd,jdbcType=VARCHAR},
+      sessid = #{sessid,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      devitp = #{devitp,jdbcType=VARCHAR},
+      longti = #{longti,jdbcType=TIMESTAMP}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

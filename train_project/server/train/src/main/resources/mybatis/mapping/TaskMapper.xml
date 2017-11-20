@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.train.dao.TaskMapper">
+  <resultMap id="BaseResultMap" type="com.train.dao.entity.Task">
+    <id column="taskid" jdbcType="INTEGER" property="taskid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="beginti" jdbcType="TIMESTAMP" property="beginti" />
+    <result column="endti" jdbcType="TIMESTAMP" property="endti" />
+    <result column="taskti" jdbcType="TIMESTAMP" property="taskti" />
+    <result column="level" jdbcType="CHAR" property="level" />
+    <result column="tasktp" jdbcType="CHAR" property="tasktp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    taskid, title, content, image, beginti, endti, taskti, level, tasktp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_task_info
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_task_info
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.train.dao.entity.Task">
+    insert into t_task_info (taskid, title, content, 
+      image, beginti, endti, 
+      taskti, level, tasktp)
+    values (#{taskid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{beginti,jdbcType=TIMESTAMP}, #{endti,jdbcType=TIMESTAMP}, 
+      #{taskti,jdbcType=TIMESTAMP}, #{level,jdbcType=CHAR}, #{tasktp,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.train.dao.entity.Task">
+    insert into t_task_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskid != null">
+        taskid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="beginti != null">
+        beginti,
+      </if>
+      <if test="endti != null">
+        endti,
+      </if>
+      <if test="taskti != null">
+        taskti,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="tasktp != null">
+        tasktp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskid != null">
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="beginti != null">
+        #{beginti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endti != null">
+        #{endti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskti != null">
+        #{taskti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=CHAR},
+      </if>
+      <if test="tasktp != null">
+        #{tasktp,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.train.dao.entity.Task">
+    update t_task_info
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="beginti != null">
+        beginti = #{beginti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endti != null">
+        endti = #{endti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskti != null">
+        taskti = #{taskti,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=CHAR},
+      </if>
+      <if test="tasktp != null">
+        tasktp = #{tasktp,jdbcType=CHAR},
+      </if>
+    </set>
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.train.dao.entity.Task">
+    update t_task_info
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      beginti = #{beginti,jdbcType=TIMESTAMP},
+      endti = #{endti,jdbcType=TIMESTAMP},
+      taskti = #{taskti,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=CHAR},
+      tasktp = #{tasktp,jdbcType=CHAR}
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+</mapper>
